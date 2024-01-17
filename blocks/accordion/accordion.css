@@ -5,7 +5,7 @@
   cursor: pointer;
 }
 
-.accordion .accordion-title:after {
+.accordion .accordion-title::after {
   content: '\002B';
   float: right;
 }
@@ -13,11 +13,11 @@
 .accordion .accordion-content {
   display: none;
   padding: 10px;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
   font-size: 16px;
 }
 
-.accordion .accordion-active .accordion-title:after {
+.accordion .accordion-active .accordion-title::after {
   content: "\2212";
 }
 
