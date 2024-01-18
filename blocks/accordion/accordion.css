@@ -18,7 +18,7 @@
 }
 
 .accordion .accordion-active .accordion-title::after {
-  content: "\2212";
+  content: '\2212';
 }
 
 .accordion .accordion-active .accordion-content {
