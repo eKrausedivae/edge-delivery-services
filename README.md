@@ -1,9 +1,9 @@
-# Your Project's Title...
-Your project's description...
+# EDS Test Project
+Testing Edge Delivery Services and creating custom components.
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.hlx.page/
-- Live: https://main--{repo}--{owner}.hlx.live/
+- Preview: https://main--edge-delivery-services--ekrausedivae.hlx.page/
+- Live: https://main--edge-delivery-services--ekrausedivae.hlx.live/
 
 ## Installation
 
