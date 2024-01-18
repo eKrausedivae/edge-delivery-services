@@ -1,0 +1,15 @@
+.buttonbacktotop .buttonbacktotop-button {
+  padding: 15px 18px;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 99;
+}
+
+.buttonbacktotop .buttonbacktotop-icon {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-135deg);
+}
