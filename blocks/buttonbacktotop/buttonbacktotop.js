@@ -2,6 +2,8 @@ export default function decorate(block) {
   const button = document.createElement('button');
   button.role = 'button';
   button.className = 'buttonbacktotop-button';
+  button.ariaLabel = 'Back to top';
+
   const icon = document.createElement('i');
   icon.className = 'buttonbacktotop-icon';
   button.append(icon);
