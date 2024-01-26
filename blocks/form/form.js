@@ -1,6 +1,82 @@
 import createField from './form-fields.js';
 import { sampleRUM } from '../../scripts/aem.js';
 
+function checkValidity(currentTab) {
+  const inputs = currentTab.querySelectorAll('input, select, textarea');
+  let valid = true;
+
+  inputs.forEach((input) => {
+    if (input.checkValidity() === false) {
+      input.reportValidity();
+      valid = false;
+    }
+  });
+
+  return valid;
+}
+
+function createMultistepNavigation(form) {
+  const container = document.createElement('div');
+  container.className = 'form-tab-nav';
+
+  const previousButton = document.createElement('button');
+  previousButton.role = 'button';
+  previousButton.type = 'button';
+  previousButton.className = 'form-previous-btn';
+  previousButton.innerText = 'Previous';
+  previousButton.disabled = true;
+  container.append(previousButton);
+
+  const nextButton = document.createElement('button');
+  nextButton.role = 'button';
+  nextButton.type = 'button';
+  nextButton.className = 'form-next-btn';
+  nextButton.innerText = 'Next';
+  container.append(nextButton);
+
+  form.append(container);
+
+  let currentTabIndex = 0;
+  const allTabs = form.querySelectorAll('.form-tab');
+
+  previousButton.addEventListener('click', () => {
+    if (currentTabIndex === 0) {
+      return;
+    }
+
+    const currentTab = allTabs[currentTabIndex];
+
+    if (currentTabIndex === 1) {
+      previousButton.disabled = true;
+    }
+
+    nextButton.disabled = false;
+    currentTab.classList.remove('active');
+    currentTabIndex -= 1;
+    const previousTab = allTabs[currentTabIndex];
+    previousTab.classList.add('active');
+  });
+
+  nextButton.addEventListener('click', () => {
+    if (currentTabIndex === allTabs.length - 1) {
+      return;
+    }
+
+    const currentTab = allTabs[currentTabIndex];
+    if (checkValidity(currentTab) === false) return;
+
+    if (currentTabIndex === allTabs.length - 2) {
+      nextButton.disabled = true;
+    }
+
+    previousButton.disabled = false;
+    currentTab.classList.remove('active');
+    currentTabIndex += 1;
+    const nextTab = allTabs[currentTabIndex];
+    nextTab.classList.add('active');
+  });
+}
+
 async function createForm(formHref) {
   const { pathname } = new URL(formHref);
   const resp = await fetch(pathname);
@@ -10,9 +86,22 @@ async function createForm(formHref) {
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split('.json')[0];
 
+  const isMultistepForm = json.data.some((item) => (item.Tab !== undefined && item.Tab !== ''));
   const fields = await Promise.all(json.data.map((fd) => createField(fd, form)));
-  fields.forEach((field) => {
-    if (field) {
+  let currentTabIndex = 0;
+  let tab = document.createElement('div');
+  tab.classList.add('form-tab', 'active');
+  fields.forEach((field, index) => {
+    if (isMultistepForm) {
+      const fieldTabIndex = json.data[index].Tab;
+      if (fieldTabIndex > currentTabIndex || index === fields.length - 1) {
+        form.append(tab);
+        currentTabIndex = fieldTabIndex;
+        tab = document.createElement('div');
+        tab.classList.add('form-tab');
+      }
+      tab.append(field);
+    } else if (field) {
       form.append(field);
     }
   });
@@ -24,6 +113,11 @@ async function createForm(formHref) {
       fieldset.append(field);
     });
   });
+
+  // add tab nav if necessary
+  if (isMultistepForm) {
+    createMultistepNavigation(form);
+  }
 
   return form;
 }
