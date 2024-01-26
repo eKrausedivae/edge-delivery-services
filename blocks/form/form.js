@@ -9,7 +9,7 @@ function checkValidity(currentTab) {
     invalidInput.reportValidity();
     return false;
   }
-  
+
   return true;
 }
 
