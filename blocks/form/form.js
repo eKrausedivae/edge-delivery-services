@@ -3,14 +3,16 @@ import { sampleRUM } from '../../scripts/aem.js';
 
 function checkValidity(currentTab) {
   const inputs = currentTab.querySelectorAll('input, select, textarea');
-  const invalidInput = inputs.find((input) => input.checkValidity() === false);
+  let valid = true;
 
-  if (invalidInput !== undefined) {
-    invalidInput.reportValidity();
-    return false;
-  }
+  inputs.forEach((input) => {
+    if (input.checkValidity() === false) {
+      input.reportValidity();
+      valid = false;
+    }
+  });
 
-  return true;
+  return valid;
 }
 
 function createMultistepNavigation(form) {
