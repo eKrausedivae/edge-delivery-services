@@ -1,3 +1,7 @@
+.form {
+  border: 1px solid black;
+}
+
 .form .field-wrapper {
   display: grid;
   grid-auto-flow: row;
@@ -133,4 +137,29 @@
 
 .form .toggle-wrapper input:checked + .slider::before {
   transform: translateX(24px);
+}
+
+.form .form-tab-nav {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  padding: 8px;
+  justify-content: end;
+}
+
+.form .form-tab {
+  display: none;
+  min-height: 600px;
+}
+
+.form .form-tab.active {
+  display: block;
+}
+
+.form .form-previous-btn {
+  margin-right: 5px;
+}
+
+.form .form-next-btn {
+  margin-left: 5px;
 }
