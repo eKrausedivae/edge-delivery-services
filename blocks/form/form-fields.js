@@ -60,6 +60,28 @@ const createPlaintext = (fd) => {
   return { field: text, fieldWrapper };
 };
 
+function setActiveTab(fieldName) {
+  const dependentField = document.getElementsByName(fieldName)[0];
+  const tabs = Array.from(document.querySelectorAll('.form-tab'));
+  tabs.forEach((tab) => {
+    if (tab.contains(dependentField)) {
+      tab.classList.add('active');
+    } else {
+      tab.classList.remove('active');
+    }
+  });
+}
+
+function setSelectCustomValidation(newValue, fieldName, options) {
+  const newOption = options.find((item) => item.value === newValue);
+  const dependentField = document.getElementsByName(fieldName)[0];
+  if (dependentField.value.toLowerCase() !== newOption.dependsOn.toLowerCase()) {
+    setActiveTab(fieldName);
+    dependentField.setCustomValidity('Wrong Country!');
+    dependentField.reportValidity();
+  }
+}
+
 const createSelect = async (fd) => {
   const select = document.createElement('select');
   setCommonAttributes(select, fd);
@@ -89,6 +111,7 @@ const createSelect = async (fd) => {
         options.push({
           text: opt.Option,
           value: opt.Value || opt.Option,
+          dependsOn: opt.DependsOnOption,
         });
       });
     } else {
@@ -99,6 +122,11 @@ const createSelect = async (fd) => {
     }
 
     options.forEach((opt) => addOption(opt));
+    if (fd.DependsOn) {
+      select.addEventListener('change', () => {
+        setSelectCustomValidation(select.value, fd.DependsOn, options);
+      });
+    }
   }
 
   const fieldWrapper = createFieldWrapper(fd);

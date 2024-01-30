@@ -36,15 +36,14 @@ function createMultistepNavigation(form) {
 
   form.append(container);
 
-  let currentTabIndex = 0;
   const allTabs = form.querySelectorAll('.form-tab');
-
   previousButton.addEventListener('click', () => {
+    const currentTab = document.querySelector('.form-tab.active');
+    let currentTabIndex = Array.from(allTabs).indexOf(currentTab);
+
     if (currentTabIndex === 0) {
       return;
     }
-
-    const currentTab = allTabs[currentTabIndex];
 
     if (currentTabIndex === 1) {
       previousButton.disabled = true;
@@ -58,11 +57,13 @@ function createMultistepNavigation(form) {
   });
 
   nextButton.addEventListener('click', () => {
+    const currentTab = document.querySelector('.form-tab.active');
+    let currentTabIndex = Array.from(allTabs).indexOf(currentTab);
+
     if (currentTabIndex === allTabs.length - 1) {
       return;
     }
 
-    const currentTab = allTabs[currentTabIndex];
     if (checkValidity(currentTab) === false) return;
 
     if (currentTabIndex === allTabs.length - 2) {
