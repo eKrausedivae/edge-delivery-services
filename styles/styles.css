@@ -112,6 +112,10 @@ pre {
   overflow: scroll;
 }
 
+main {
+  margin-left: 160px;
+}
+
 main pre {
   background-color: var(--light-color);
   padding: 1em;

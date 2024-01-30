@@ -1,3 +1,7 @@
+.footer-wrapper {
+  padding-left: calc(2rem + 160px);
+}
+
 footer {
   padding: 2rem;
   background-color: var(--light-color);
