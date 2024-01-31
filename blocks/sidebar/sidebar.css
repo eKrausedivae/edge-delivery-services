@@ -1,0 +1,13 @@
+.sidebar-container {
+  background-color: #045ee6;
+  color: white;
+  padding-top: 20px;
+}
+
+.sidebar ul {
+  list-style-type:none;
+}
+
+.sidebar a {
+  color: white;
+}
