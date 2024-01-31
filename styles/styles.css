@@ -117,10 +117,6 @@ main.main-with-sidebar {
   width: 100%;
 }
 
-main.main-with-sidebar .section {
-  flex: 1;
-}
-
 main pre {
   background-color: var(--light-color);
   padding: 1em;
@@ -197,6 +193,10 @@ main img {
 /* sections */
 main .section {
   padding: 64px 16px;
+}
+
+main.main-with-sidebar .section {
+  flex: 1;
 }
 
 @media (width >= 600px) {
