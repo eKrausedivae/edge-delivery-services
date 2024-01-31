@@ -1,0 +1,27 @@
+.sidenav-container {
+  height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #035fe6;
+    color: white;
+}
+
+.sidenav .default-content-wrapper {
+  padding: 1em;
+}
+
+
+.sidenav ul {
+  list-style-type: none;
+}
+
+.sidenav .default-content-wrapper > ul {
+  padding: 0;
+}
+
+.sidenav a {
+  color: white;
+}

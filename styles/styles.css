@@ -115,6 +115,11 @@ pre {
 main.main-with-sidebar {
   display: flex;
   width: 100%;
+  max-width: calc(100% - 300px);
+}
+
+main {
+  margin-left: 300px;
 }
 
 main pre {

@@ -1,9 +1,14 @@
 /* header and nav layout */
+header {
+  margin-left: 300px;
+}
+
 header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
   z-index: 2;
   position: fixed;
+  max-width: calc(100% - 300px);
 }
 
 header nav {

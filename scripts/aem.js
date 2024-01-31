@@ -646,6 +646,18 @@ async function loadHeader(header) {
 }
 
 /**
+ * Loads a block named 'sidenav' into sidenav
+ * @param {Element} sidenav sidenav element
+ * @returns {Promise}
+ */
+async function loadSidenav(sidenav) {
+  const sidenavBlock = buildBlock('sidenav', '');
+  sidenav.append(sidenavBlock);
+  decorateBlock(sidenavBlock);
+  return loadBlock(sidenavBlock);
+}
+
+/**
  * Loads a block named 'footer' into footer
  * @param footer footer element
  * @returns {Promise}
@@ -698,6 +710,7 @@ export {
   loadCSS,
   loadFooter,
   loadHeader,
+  loadSidenav,
   loadScript,
   readBlockConfig,
   sampleRUM,
