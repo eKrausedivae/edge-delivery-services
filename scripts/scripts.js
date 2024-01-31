@@ -2,6 +2,7 @@ import {
   sampleRUM,
   buildBlock,
   loadHeader,
+  loadSidenav,
   loadFooter,
   decorateButtons,
   decorateIcons,
@@ -105,7 +106,13 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
+  const body = doc.querySelector('body');
+  const sidenav = doc.createElement('div');
+  sidenav.classList.add('sidenav-container');
+  body.insertBefore(sidenav, main);
+
   loadHeader(doc.querySelector('header'));
+  loadSidenav(doc.querySelector('.sidenav-container'));
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);

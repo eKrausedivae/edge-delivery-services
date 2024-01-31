@@ -1,7 +1,6 @@
 .sidebar-container {
-  background-color: #045ee6;
-  color: white;
-  max-width: 300px;
+  max-width: 200px;
+  border-left: 1px solid black;
 }
 
 .sidebar ul {
@@ -9,5 +8,5 @@
 }
 
 .sidebar a {
-  color: white;
+  color: black;
 }
