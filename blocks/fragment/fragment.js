@@ -46,7 +46,7 @@ export default async function decorate(block) {
   let path = link ? link.getAttribute('href') : block.textContent.trim();
 
   if (path === '') {
-    path = ('fragments/').concat(window.location.pathname);
+    path = ('fragments').concat(window.location.pathname);
   }
 
   const fragment = await loadFragment(path);
