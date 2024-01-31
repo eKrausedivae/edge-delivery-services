@@ -13,6 +13,8 @@ async function createSidebar(sidebarHref) {
       li.append(anchor);
       sidebar.append(li);
     }
+
+    return link;
   }));
 
   return sidebar;
