@@ -1,20 +1,7 @@
 .sidebar-container {
-  height: 100%;
-  width: 160px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
   background-color: #045ee6;
   color: white;
-  overflow-x: hidden;
   padding-top: 20px;
-}
-
-@media (width >= 600px) {
-  .section.sidebar-container {
-    padding: 0;
-  }
 }
 
 .sidebar ul {

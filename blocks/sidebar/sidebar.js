@@ -19,6 +19,7 @@ async function createSidebar(sidebarHref) {
 }
 
 export default async function decorate(block) {
+  document.querySelector('main').classList.add('main-with-sidebar');
   const sidebarLink = block.textContent.trim();
   if (!sidebarLink) return;
 
