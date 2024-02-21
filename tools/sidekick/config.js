@@ -6,7 +6,10 @@
       "title": "Library",
       "environments": ["edit"],
       "url": "/tools/sidekick/library.html",
-      "includePaths": ["**.docx**"]
+      "includePaths": ["**.docx**"],
+      "blocks": {
+        "contentEditable": true,
+      }
     }
   ]
 }
